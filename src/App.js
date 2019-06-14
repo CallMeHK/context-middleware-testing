@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useContext, useCallback } from "react";
+import logo from "./logo.svg";
+import { Context } from "./cxCreator/SetUpCxCreator";
+import { updateCount, updateWord } from "./ContextActions";
 
-function App() {
+import "./App.css";
+
+const App = () => {
+  const { state, dispatch } = useContext(Context);
+  const setCount = () => dispatch(updateCount(1));
+  const setWord = word => dispatch({ type: "set-word", payload: word });
+  useEffect(() => {
+    console.log(state);
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <code>The count is {state.count}</code>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>
+          <code>The word is {state.word}</code>
+        </p>
+        <div>
+          <button onClick={() => setCount()}>Increase count</button>
+        </div>
+        <div>
+          <input value={state.word} onChange={e => setWord(e.target.value)} />
+        </div>
       </header>
     </div>
   );
-}
+};
 
 export default App;
