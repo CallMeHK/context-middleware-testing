@@ -1,3 +1,11 @@
+---
+
+## react context middleware experimenting
+
+This app experiments with setting up context middleware. More details to come.
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
